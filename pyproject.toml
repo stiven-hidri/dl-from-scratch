@@ -1,0 +1,23 @@
+[project]
+name = "micrograd"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "graphviz>=0.21",
+    "ruff>=0.16.3",
+    "ty>=0.0.72",
+]
+
+[dependency-groups]
+dev = [
+    "ty>=0.0.72",
+]
+
+[project.scripts]
+dev = "micrograd.main:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
