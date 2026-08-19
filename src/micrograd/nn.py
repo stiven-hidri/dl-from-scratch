@@ -1,6 +1,6 @@
 import random
 
-from dl_from_scratch.engine import Value
+from micrograd.engine import Value
 
 
 class Neuron:

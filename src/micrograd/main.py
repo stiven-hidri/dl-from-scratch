@@ -1,4 +1,4 @@
-from dl_from_scratch.nn import MLP
+from micrograd.nn import MLP
 
 
 def main():
