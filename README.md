@@ -1,14 +1,10 @@
 # dl-from-scratch
 
-A personal collection of deep learning concepts implemented from scratch, for learning purposes. Each module lives in its own package under `src/` and re-implements a core idea without relying on a framework to do the heavy lifting.
+A personal collection of deep learning concepts implemented from scratch, for learning purposes. Everything currently lives in the `dl_from_scratch` package under `src/`; as more concepts get added they'll grow out into their own modules within it.
 
-## Modules
+## What's inside
 
-### `micrograd`
-
-A tiny scalar-valued autograd engine and a small neural net library built on top of it, following the spirit of [Andrej Karpathy's micrograd](https://github.com/karpathy/micrograd). `Value` wraps a number and records the operations that produced it in a computation graph; `backward()` walks that graph in reverse topological order to compute gradients via backpropagation. `nn.py` builds `Neuron` / `Layer` / `MLP` on top of `Value`.
-
-More modules will be added here over time as new concepts are worked through.
+A tiny scalar-valued autograd engine and a small neural net library built on top of it (`engine.py`, `nn.py`), following the spirit of [Andrej Karpathy's micrograd](https://github.com/karpathy/micrograd). `Value` wraps a number and records the operations that produced it in a computation graph; `backward()` walks that graph in reverse topological order to compute gradients via backpropagation. `nn.py` builds `Neuron` / `Layer` / `MLP` on top of `Value`.
 
 ## Setup
 

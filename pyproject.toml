@@ -1,5 +1,5 @@
 [project]
-name = "micrograd"
+name = "dl-from-scratch"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -16,7 +16,7 @@ dev = [
 ]
 
 [project.scripts]
-dev = "micrograd.main:main"
+dev = "dl_from_scratch.main:main"
 
 [build-system]
 requires = ["hatchling"]
