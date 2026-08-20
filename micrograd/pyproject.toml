@@ -1,0 +1,22 @@
+[project]
+name = "micrograd"
+version = "0.1.0"
+description = "A tiny scalar-valued autograd engine and small neural net library, from scratch."
+requires-python = ">=3.14"
+dependencies = [
+    "graphviz>=0.21",
+    "tqdm>=4.70.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "torch>=2.13.0",
+]
+
+[project.scripts]
+micrograd = "micrograd.main:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

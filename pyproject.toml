@@ -1,26 +1,19 @@
 [project]
-name = "micrograd"
+name = "dl-from-scratch"
 version = "0.1.0"
-description = "Add your description here"
+description = "A personal collection of deep learning concepts implemented from scratch, for learning purposes."
 readme = "README.md"
 requires-python = ">=3.14"
-dependencies = [
-    "graphviz>=0.21",
-    "ruff>=0.16.3",
-    "tqdm>=4.70.0",
-    "ty>=0.0.72",
-]
+dependencies = []
+
+[tool.uv]
+package = false
+
+[tool.uv.workspace]
+members = ["micrograd", "makemore"]
 
 [dependency-groups]
 dev = [
-    "pytest>=9.1.1",
-    "torch>=2.13.0",
+    "ruff>=0.16.3",
     "ty>=0.0.72",
 ]
-
-[project.scripts]
-dev = "micrograd.main:main"
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"

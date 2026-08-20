@@ -2,6 +2,13 @@ version = 1
 revision = 3
 requires-python = ">=3.14"
 
+[manifest]
+members = [
+    "dl-from-scratch",
+    "makemore",
+    "micrograd",
+]
+
 [[package]]
 name = "colorama"
 version = "0.4.6"
@@ -83,6 +90,25 @@ nvtx = [
 ]
 
 [[package]]
+name = "dl-from-scratch"
+version = "0.1.0"
+source = { virtual = "." }
+
+[package.dev-dependencies]
+dev = [
+    { name = "ruff" },
+    { name = "ty" },
+]
+
+[package.metadata]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "ruff", specifier = ">=0.16.3" },
+    { name = "ty", specifier = ">=0.0.72" },
+]
+
+[[package]]
 name = "filelock"
 version = "3.32.3"
 source = { registry = "https://pypi.org/simple" }
@@ -131,6 +157,11 @@ wheels = [
 ]
 
 [[package]]
+name = "makemore"
+version = "0.1.0"
+source = { editable = "makemore" }
+
+[[package]]
 name = "markupsafe"
 version = "3.0.3"
 source = { registry = "https://pypi.org/simple" }
@@ -163,34 +194,28 @@ wheels = [
 [[package]]
 name = "micrograd"
 version = "0.1.0"
-source = { editable = "." }
+source = { editable = "micrograd" }
 dependencies = [
     { name = "graphviz" },
-    { name = "ruff" },
     { name = "tqdm" },
-    { name = "ty" },
 ]
 
 [package.dev-dependencies]
 dev = [
     { name = "pytest" },
     { name = "torch" },
-    { name = "ty" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "graphviz", specifier = ">=0.21" },
-    { name = "ruff", specifier = ">=0.16.3" },
     { name = "tqdm", specifier = ">=4.70.0" },
-    { name = "ty", specifier = ">=0.0.72" },
 ]
 
 [package.metadata.requires-dev]
 dev = [
     { name = "pytest", specifier = ">=9.1.1" },
     { name = "torch", specifier = ">=2.13.0" },
-    { name = "ty", specifier = ">=0.0.72" },
 ]
 
 [[package]]

@@ -1,0 +1,13 @@
+[project]
+name = "makemore"
+version = "0.1.0"
+description = "Character-level language modeling from scratch, following Karpathy's makemore."
+requires-python = ">=3.14"
+dependencies = []
+
+[project.scripts]
+makemore = "makemore.main:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

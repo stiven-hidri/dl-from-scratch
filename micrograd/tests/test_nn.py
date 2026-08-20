@@ -4,7 +4,6 @@ import random
 
 import pytest
 import torch
-
 from micrograd.nn import MLP
 
 ACTIVATIONS = {"relu": torch.relu, "tanh": torch.tanh}
