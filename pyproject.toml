@@ -7,11 +7,14 @@ requires-python = ">=3.14"
 dependencies = [
     "graphviz>=0.21",
     "ruff>=0.16.3",
+    "tqdm>=4.70.0",
     "ty>=0.0.72",
 ]
 
 [dependency-groups]
 dev = [
+    "pytest>=9.1.1",
+    "torch>=2.13.0",
     "ty>=0.0.72",
 ]
 

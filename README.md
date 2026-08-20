@@ -30,7 +30,10 @@ uv run dev
 uv run ruff check .      # lint
 uv run ruff format .     # format
 uv run ty check          # type-check
+uv run pytest            # test
 ```
+
+Tests cross-check `Value`'s and `MLP`'s forward/backward against `torch`'s autograd on the same computations, rather than asserting hardcoded numbers — this is what actually caught the sign/aliasing bugs found while building `micrograd`.
 
 ## License
 

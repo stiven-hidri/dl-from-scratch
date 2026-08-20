@@ -9,21 +9,51 @@ class Value:
         data: float,
         label: str = "data",
         grad: float = 0.0,
+        activation_name: str = "relu",
         _children: tuple[Value, ...] = (),
         _op: str | None = None,
     ) -> None:
         self.data = data
         self.label = label
         self.grad = grad
+        self.activation_name: str = activation_name
         self._backward = lambda: None
         self._prev = set(_children)
         self._op = _op
 
     def __repr__(self) -> str:
-        return f"Value(data={self.data})"
+        return f"{self.data:.4f}"
 
     def __radd__(self, other):
         return self + other
+
+    def __neg__(self):
+
+        out = Value(
+            data=-self.data,
+            label=self.label,
+            _children=(self,),
+            _op="neg",
+        )
+
+        def _backward():
+            self.grad += -1 * out.grad
+
+        out._backward = _backward
+
+        return out
+
+    def __rsub__(self, other: Value | float):
+        if isinstance(other, (float, int)):
+            other = Value(data=float(other))
+
+        return other + -self
+
+    def __sub__(self, other: Value | float):
+        if isinstance(other, (float, int)):
+            other = Value(data=float(other))
+
+        return self + -other
 
     def __add__(self, other: Value | float) -> Value:
 
@@ -70,7 +100,6 @@ class Value:
 
         def _backward():
             self.grad += (other.data) * self.data ** (other.data - 1) * out.grad
-            other.grad += math.log(self.data) * out.data * out.grad
 
         out._backward = _backward
 
@@ -87,15 +116,37 @@ class Value:
         return self * other ** (-1)
 
     def tanh(self) -> Value:
-
-        x = self.data
-        tanh_res = (math.exp(2 * x) - 1) / (math.exp(2 * x) + 1)
+        tanh_res = math.tanh(self.data)
         out = Value(data=tanh_res, _children=(self,), label="tanh", _op="tanh")
 
         def _backward() -> None:
             self.grad += out.grad * (1.0 - tanh_res**2)
 
         out._backward = _backward
+
+        return out
+
+    def relu(self) -> Value:
+
+        rel_res = max(0, self.data)
+
+        out = Value(data=rel_res, _children=(self,), label="relu", _op="relu")
+
+        def _backward() -> None:
+            self.grad += out.grad * ((self.data > 0.0) * 1.0)
+
+        out._backward = _backward
+
+        return out
+
+    def sigmoid(self):
+
+        sigmoid_res = 1 / (1 + math.exp(-self.data))
+
+        out = Value(data=sigmoid_res, label="sigmoid", _op="sigmoid")
+
+        def _backward():
+            self.grad = out.grad * (sigmoid_res * (1 - sigmoid_res))
 
         return out
 
@@ -165,3 +216,11 @@ class Value:
             dot.edge(str(id(n1)), target_uid)
 
         return dot
+
+    def activation(self) -> Value:
+        if self.activation_name == "relu":
+            return self.relu()
+        elif self.activation_name == "tanh":
+            return self.tanh()
+        else:
+            raise NotImplementedError(f"Invalid activation: {self.activation_name}")

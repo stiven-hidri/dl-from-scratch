@@ -6,7 +6,7 @@ on:
   pull_request:
 
 jobs:
-  lint-and-typecheck:
+  checks:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -28,3 +28,6 @@ jobs:
 
       - name: Type-check with ty
         run: uv run ty check
+
+      - name: Run tests
+        run: uv run pytest
